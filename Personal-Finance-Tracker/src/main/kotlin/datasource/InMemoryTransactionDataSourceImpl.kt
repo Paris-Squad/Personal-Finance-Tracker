@@ -5,6 +5,7 @@ import models.Transaction
 import java.time.LocalDateTime
 
 class InMemoryTransactionDataSourceImpl : TransactionDataSource {
+    val transactions = mutableListOf<Transaction>()
     override fun createTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
     }
@@ -18,9 +19,15 @@ class InMemoryTransactionDataSourceImpl : TransactionDataSource {
     }
 
     override fun getAllTransaction(): List<Transaction> {
-        return listOf()
+        if (transactions.isEmpty())
+            return emptyList<Transaction>()
+        else
+            return transactions
+        /*else if (transactions is MutableList<Transaction>)
+            return transactions
+        else if (transactions is MutableList<Any>)
+            return emptyList<Transaction>()*/
     }
-
     override fun getTransactionByDate(date: LocalDateTime): List<Transaction> {
         TODO("Not yet implemented")
     }
