@@ -1,13 +1,12 @@
 package datasource
 
 import models.Transaction
-import java.time.LocalDateTime
+import kotlinx.datetime.LocalDate
 
 interface TransactionDataSource {
     fun createTransaction(transaction: Transaction)
     fun removeTransaction(transaction: Transaction)
     fun updateTransaction(transaction: Transaction)
-    fun getAllTransaction(): List<Transaction>
-    fun getTransactionByDate(date: LocalDateTime): List<Transaction>
-    fun getMonthlyReport(date: LocalDateTime) : List<Transaction>
+    fun getTransactions(): List<Transaction>
+    fun generateReport(startingDate: LocalDate, endingDate: LocalDate) : List<Transaction>
 }

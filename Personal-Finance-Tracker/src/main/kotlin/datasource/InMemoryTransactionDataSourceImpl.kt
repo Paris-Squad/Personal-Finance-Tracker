@@ -2,7 +2,7 @@ package org.example.datasource
 
 import datasource.TransactionDataSource
 import models.Transaction
-import java.time.LocalDateTime
+import kotlinx.datetime.LocalDate
 
 class InMemoryTransactionDataSourceImpl:TransactionDataSource {
     override fun createTransaction(transaction: Transaction) {
@@ -17,15 +17,11 @@ class InMemoryTransactionDataSourceImpl:TransactionDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun getAllTransaction(): List<Transaction> {
+    override fun getTransactions(): List<Transaction> {
         TODO("Not yet implemented")
     }
 
-    override fun getTransactionByDate(date: LocalDateTime): List<Transaction> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getMonthlyReport(date: LocalDateTime): List<Transaction> {
+    override fun generateReport(startingDate: LocalDate, endingDate: LocalDate): List<Transaction> {
         TODO("Not yet implemented")
     }
 }
