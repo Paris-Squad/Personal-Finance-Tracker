@@ -4,7 +4,7 @@ import datasource.TransactionDataSource
 import models.Transaction
 import java.time.LocalDateTime
 
-class InMemoryTransactionDataSourceImpl:TransactionDataSource {
+class InMemoryTransactionDataSourceImpl : TransactionDataSource {
     override fun createTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
     }
@@ -18,7 +18,7 @@ class InMemoryTransactionDataSourceImpl:TransactionDataSource {
     }
 
     override fun getAllTransaction(): List<Transaction> {
-        TODO("Not yet implemented")
+        return listOf()
     }
 
     override fun getTransactionByDate(date: LocalDateTime): List<Transaction> {
