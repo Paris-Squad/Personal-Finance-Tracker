@@ -9,7 +9,7 @@ class InMemoryTransactionDataSourceImpl:TransactionDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun removeTransaction(transaction: Transaction) {
+    override fun removeTransaction(transaction: Transaction):Boolean {
         TODO("Not yet implemented")
     }
 
