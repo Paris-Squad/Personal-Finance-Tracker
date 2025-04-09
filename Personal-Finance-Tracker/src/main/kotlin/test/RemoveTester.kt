@@ -22,6 +22,7 @@ fun main(){
         expected = true
     )
 }
+
  fun <T>check(name: String, result: T, expected: T) {
     if (result == expected) {
         println("Successful: $name")
