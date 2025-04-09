@@ -5,8 +5,15 @@ import models.Transaction
 import java.time.LocalDateTime
 
 class InMemoryTransactionDataSourceImpl:TransactionDataSource {
+    private val transactions = mutableListOf<Transaction>()
+
     override fun createTransaction(transaction: Transaction) {
-        TODO("Not yet implemented")
+        try {
+            transactions.add(transaction)
+            println("Transaction added successfully!")
+        }catch (e:Exception){
+            println(e.message)
+        }
     }
 
     override fun removeTransaction(transaction: Transaction) {
