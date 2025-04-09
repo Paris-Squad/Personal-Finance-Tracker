@@ -1,14 +1,19 @@
 package models
 
-import java.time.LocalDateTime
-import java.util.UUID
 
-data class Transaction (
+import kotlinx.datetime.LocalDate
+import kotlinx.serialization.Serializable
+import org.example.utils.UUIDSerializer
+import java.util.*
+
+@Serializable
+data class Transaction(
+    @Serializable(with = UUIDSerializer::class)
     val id: UUID = UUID.randomUUID(),
     val name: String,
-    val isDeposit : Boolean ,
+    val isDeposit: Boolean,
     val amount: Double,
     val category: Category,
-    val creationTime: LocalDateTime,
-    val editTime : List<LocalDateTime>
+    val creationTime: LocalDate,
+    val editTime: List<LocalDate>
 )
