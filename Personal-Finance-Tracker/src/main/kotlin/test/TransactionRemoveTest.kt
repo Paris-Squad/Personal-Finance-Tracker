@@ -1,6 +1,7 @@
 package org.example.test
 
 fun main(){
+
     check(
         name = "When removing from empty list, then should return false",
         result=false,
@@ -18,6 +19,11 @@ fun main(){
     )
     check(
         name = "When removing one of multiple transactions, then should return true",
+        result= true,
+        expected = true
+    )
+    check(
+        name = "When the input for removing doesn't valid integer, then should return true",
         result= true,
         expected = true
     )

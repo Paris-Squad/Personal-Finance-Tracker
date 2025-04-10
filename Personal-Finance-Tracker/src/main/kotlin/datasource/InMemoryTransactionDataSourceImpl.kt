@@ -6,12 +6,13 @@ import java.time.LocalDateTime
 
 class InMemoryTransactionDataSourceImpl:TransactionDataSource {
     val transactionList = mutableListOf<Transaction>()
+
     override fun createTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
     }
 
     override fun removeTransaction(transaction: Transaction)=
-        transactionList.removeIf { it.id == transaction.id }
+        transactionList.remove(transaction)
 
     override fun updateTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
