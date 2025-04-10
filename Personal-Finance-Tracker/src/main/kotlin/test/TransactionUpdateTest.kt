@@ -1,9 +1,12 @@
 package org.example.test
 
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import models.Category
 import models.Transaction
 import org.example.datasource.FakeTransactionDataSourceImpl
-import java.time.LocalDateTime
 
 fun main() {
     val dataSource = FakeTransactionDataSourceImpl()
@@ -15,8 +18,8 @@ fun main() {
         isDeposit = false,
         amount = 150.0,
         category = Category.RENT,
-        creationTime = LocalDateTime.now(),
-        editTime = emptyList()
+        creationDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
+        editDate = emptyList()
     )
 
     val validDepositTransaction = Transaction(
@@ -24,8 +27,8 @@ fun main() {
         isDeposit = true,
         amount = 150.0,
         category = Category.RENT,
-        creationTime = LocalDateTime.now(),
-        editTime = emptyList()
+        creationDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
+        editDate = emptyList()
     )
     val updateDepositTransaction = validDepositTransaction.copy(name = "Deposit Transaction Updated", amount = 200.0)
     // endregion
@@ -36,15 +39,15 @@ fun main() {
         isDeposit = true,
         amount = 150.0,
         category = Category.FOOD,
-        creationTime = LocalDateTime.now(),
-        editTime = emptyList()
+        creationDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
+        editDate = emptyList()
     )
 
     val emptyNameTransaction = validDepositTransaction.copy(name = "   ")
 
     val negativeAmountTransaction = validDepositTransaction.copy(amount = -200.0)
 
-    val futureDateTransaction = validDepositTransaction.copy(creationTime = LocalDateTime.MAX)
+    val futureDateTransaction = validDepositTransaction.copy(creationDate = LocalDate(2025, 4, 1))
     // endregion
 
     dataSource.createTransaction(validWithdrawalTransaction)

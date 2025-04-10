@@ -1,8 +1,11 @@
 package org.example.datasource
 
 import datasource.TransactionDataSource
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import models.Transaction
-import java.time.LocalDateTime
 
 class FakeTransactionDataSourceImpl : TransactionDataSource {
     private val transactionList = mutableListOf<Transaction>()
@@ -26,7 +29,8 @@ class FakeTransactionDataSourceImpl : TransactionDataSource {
         // check amount if negative
         val isPositiveAmount = transaction.amount > 0
         // check date in future
-        val isFutureDate = transaction.creationTime.isAfter(LocalDateTime.now())
+        val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
+        val isFutureDate = transaction.creationDate > today
 
         when {
             index < 0 -> println("Update Failed: Item not found")
@@ -35,24 +39,20 @@ class FakeTransactionDataSourceImpl : TransactionDataSource {
             !isPositiveAmount -> println("Update Failed: Amount must be positive")
             else -> {
                 val currentTransaction = transactionList[index]
-                val editedAtList = currentTransaction.editTime.toMutableList()
-                editedAtList.add(LocalDateTime.now())
-                transactionList[index] = transaction.copy(editTime = editedAtList)
+                val editedAtList = currentTransaction.editDate.toMutableList()
+                editedAtList.add(Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date)
+                transactionList[index] = transaction.copy(editDate = editedAtList)
                 println("Update Transaction Success ")
             }
         }
 
     }
 
-    override fun getAllTransaction(): List<Transaction> {
+    override fun getTransactions(): List<Transaction> {
         TODO("Not yet implemented")
     }
 
-    override fun getTransactionByDate(date: LocalDateTime): List<Transaction> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getMonthlyReport(date: LocalDateTime): List<Transaction> {
+    override fun generateReport(startingDate: LocalDate, endingDate: LocalDate): List<Transaction> {
         TODO("Not yet implemented")
     }
 }
