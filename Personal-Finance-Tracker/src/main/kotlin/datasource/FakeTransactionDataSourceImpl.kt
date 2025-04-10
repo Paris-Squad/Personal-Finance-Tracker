@@ -18,34 +18,24 @@ class FakeTransactionDataSourceImpl : TransactionDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun updateTransaction(transaction: Transaction) {
-
-        val index = transactionList.indexOfFirst {
+    @Throws(TransactionNotFoundException::class)
+    override fun updateTransaction(transaction: Transaction): Transaction {
+        val currentTransaction = transactionList.find {
             it.id == transaction.id
         }
 
-        // check name if empty
-        val isBlankName = transaction.name.isBlank()
-        // check amount if negative
-        val isPositiveAmount = transaction.amount > 0
-        // check date in future
-        val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
-        val isFutureDate = transaction.creationDate > today
-
-        when {
-            index < 0 -> println("Update Failed: Item not found")
-            isBlankName -> println("Update Failed: Name can't be empty")
-            isFutureDate -> println("Update Failed: Date can't be in future")
-            !isPositiveAmount -> println("Update Failed: Amount must be positive")
-            else -> {
-                val currentTransaction = transactionList[index]
-                val editedAtList = currentTransaction.editDate.toMutableList()
-                editedAtList.add(Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date)
-                transactionList[index] = transaction.copy(editDate = editedAtList)
-                println("Update Transaction Success ")
+        currentTransaction?.let {
+            val editedAtList = currentTransaction.editDate.toMutableList()
+            editedAtList.add(Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date)
+            val index = transactionList.indexOfFirst {
+                it.id == currentTransaction.id
             }
+            val updatedTransaction = transaction.copy(editDate = editedAtList)
+            transactionList[index] = updatedTransaction
+            return updatedTransaction
         }
 
+        throw TransactionNotFoundException()
     }
 
     override fun getTransactions(): List<Transaction> {
@@ -56,3 +46,6 @@ class FakeTransactionDataSourceImpl : TransactionDataSource {
         TODO("Not yet implemented")
     }
 }
+
+class TransactionNotFoundException : Throwable("Transaction not found")
+class TransactionNotValidException : Throwable("Transaction not valid")
