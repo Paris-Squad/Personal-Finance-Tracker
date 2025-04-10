@@ -4,7 +4,7 @@ import datasource.TransactionDataSource
 import models.Transaction
 import kotlinx.datetime.LocalDate
 
-class InMemoryTransactionDataSourceImpl:TransactionDataSource {
+class FakeTransactionDataSourceImpl:TransactionDataSource {
     override fun createTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
     }
