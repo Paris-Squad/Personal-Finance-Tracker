@@ -10,13 +10,13 @@ class InMemoryTransactionDataSourceImpl:TransactionDataSource {
 
 
     override fun createTransaction(transaction: Transaction) : Boolean {
-        val isValid = Validation.isValidName(transaction.name) &&
-                Validation.isValidAmount(transaction.amount) &&
-                Validation.isValidTransactionType(transaction.isDeposit) &&
-                Validation.isValidCategory(transaction.category) &&
-                Validation.isValidCreationDate(transaction.creationDate)
+        val isValidName = Validation.isValidName(transaction.name)
+        val isValidAmount = Validation.isValidAmount(transaction.amount)
+        val isValidTransactionType =  Validation.isValidTransactionType(transaction.isDeposit)
+        val isValidCategory =  Validation.isValidCategory(transaction.category)
+        val isValidCreationDate = Validation.isValidCreationDate(transaction.creationDate)
 
-        return if (isValid) {
+        return if (isValidName && isValidAmount && isValidTransactionType && isValidCategory && isValidCreationDate  ) {
             transactions.add(transaction)
             true
         } else {
