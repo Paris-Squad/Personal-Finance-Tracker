@@ -7,8 +7,8 @@ import kotlinx.datetime.toLocalDateTime
 import models.Category
 import models.Transaction
 import org.example.datasource.FakeTransactionDataSourceImpl
-import org.example.datasource.TransactionNotFoundException
-import org.example.datasource.TransactionNotValidException
+import org.example.exceptions.TransactionNotFoundException
+import org.example.exceptions.TransactionNotValidException
 import org.example.interactor.UpdateTransactionInteractor
 
 fun main() {

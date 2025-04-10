@@ -6,6 +6,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import models.Transaction
+import org.example.exceptions.TransactionNotFoundException
 
 class FakeTransactionDataSourceImpl : TransactionDataSource {
     private val transactionList = mutableListOf<Transaction>()
@@ -14,9 +15,8 @@ class FakeTransactionDataSourceImpl : TransactionDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun removeTransaction(transaction: Transaction) {
-        TODO("Not yet implemented")
-    }
+    override fun removeTransaction(transaction: Transaction) =
+        transactionList.removeIf { it.id == transaction.id }
 
     @Throws(TransactionNotFoundException::class)
     override fun updateTransaction(transaction: Transaction): Transaction {
@@ -46,6 +46,3 @@ class FakeTransactionDataSourceImpl : TransactionDataSource {
         TODO("Not yet implemented")
     }
 }
-
-class TransactionNotFoundException : Throwable("Transaction not found")
-class TransactionNotValidException : Throwable("Transaction not valid")

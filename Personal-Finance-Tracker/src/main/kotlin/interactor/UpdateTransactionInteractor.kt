@@ -5,7 +5,7 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import models.Transaction
-import org.example.datasource.TransactionNotValidException
+import org.example.exceptions.TransactionNotValidException
 
 
 class UpdateTransactionInteractor(
