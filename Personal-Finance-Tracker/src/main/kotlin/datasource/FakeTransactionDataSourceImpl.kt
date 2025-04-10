@@ -4,7 +4,7 @@ import datasource.TransactionDataSource
 import models.Transaction
 import java.time.LocalDateTime
 
-class InMemoryTransactionDataSourceImpl : TransactionDataSource {
+class FakeTransactionDataSourceImpl : TransactionDataSource {
     private val transactionList = mutableListOf<Transaction>()
 
     override fun createTransaction(transaction: Transaction) {

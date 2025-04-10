@@ -2,11 +2,11 @@ package org.example.test
 
 import models.Category
 import models.Transaction
-import org.example.datasource.InMemoryTransactionDataSourceImpl
+import org.example.datasource.FakeTransactionDataSourceImpl
 import java.time.LocalDateTime
 
 fun main() {
-    val dataSource = InMemoryTransactionDataSourceImpl()
+    val dataSource = FakeTransactionDataSourceImpl()
 
 
     // region ValidTransaction
