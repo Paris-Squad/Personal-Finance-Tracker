@@ -6,10 +6,10 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import models.Category
 
-class Validation {
+object Validation {
 
      fun isValidName(name: String): Boolean {
-        return name.isNotEmpty() && name.all { it.isLetter() || it.isWhitespace() }
+         return name.isNotBlank()&& name.all { it.isLetter() || it.isWhitespace() }
     }
 
      fun isValidAmount(amount: Double): Boolean {
