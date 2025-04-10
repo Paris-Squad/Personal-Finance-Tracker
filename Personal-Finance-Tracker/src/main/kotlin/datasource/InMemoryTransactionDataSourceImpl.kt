@@ -7,15 +7,14 @@ import org.example.common.Validation
 
 class InMemoryTransactionDataSourceImpl:TransactionDataSource {
     private val transactions = mutableListOf<Transaction>()
-    private val validator = Validation()
 
 
     override fun createTransaction(transaction: Transaction) : Boolean {
-        val isValid = validator.isValidName(transaction.name) &&
-                validator.isValidAmount(transaction.amount) &&
-                validator.isValidTransactionType(transaction.isDeposit) &&
-                validator.isValidCategory(transaction.category) &&
-                validator.isValidCreationDate(transaction.creationDate)
+        val isValid = Validation.isValidName(transaction.name) &&
+                Validation.isValidAmount(transaction.amount) &&
+                Validation.isValidTransactionType(transaction.isDeposit) &&
+                Validation.isValidCategory(transaction.category) &&
+                Validation.isValidCreationDate(transaction.creationDate)
 
         return if (isValid) {
             transactions.add(transaction)
