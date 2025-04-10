@@ -14,6 +14,6 @@ data class Transaction(
     val isDeposit: Boolean,
     val amount: Double,
     val category: Category,
-    val creationTime: LocalDate,
-    val editTime: List<LocalDate>
+    val creationDate : LocalDate,
+    val editDate: List<LocalDate>
 )
