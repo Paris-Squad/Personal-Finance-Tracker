@@ -2,13 +2,12 @@ package org.example.datasource
 
 import datasource.TransactionDataSource
 import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import models.Transaction
 import org.example.exceptions.TransactionNotFoundException
 
-class FakeTransactionDataSourceImpl : TransactionDataSource {
+class FakeTransactionDataSourceImpl:TransactionDataSource {
     private val transactionList = mutableListOf<Transaction>()
 
     override fun createTransaction(transaction: Transaction) {
@@ -39,10 +38,6 @@ class FakeTransactionDataSourceImpl : TransactionDataSource {
     }
 
     override fun getTransactions(): List<Transaction> {
-        TODO("Not yet implemented")
-    }
-
-    override fun generateReport(startingDate: LocalDate, endingDate: LocalDate): List<Transaction> {
         TODO("Not yet implemented")
     }
 }
