@@ -1,9 +1,9 @@
 package models
 
 import kotlinx.datetime.LocalDate
+import kotlinx.serialization.Serializable
 import java.util.UUID
 
-import kotlinx.serialization.Serializable
 import org.example.utils.UUIDSerializer
 import java.util.*
 

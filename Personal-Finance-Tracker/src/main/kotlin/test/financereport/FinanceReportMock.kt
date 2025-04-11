@@ -18,7 +18,7 @@ class FinanceReportMock : TransactionDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun updateTransaction(transaction: Transaction) {
+    override fun updateTransaction(transaction: Transaction): Transaction {
         TODO("Not yet implemented")
     }
 

@@ -1,10 +1,14 @@
 package org.example.datasource
 
 import datasource.TransactionDataSource
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toKotlinLocalDate
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import models.Transaction
+import org.example.exceptions.TransactionNotFoundException
 import org.example.utils.Validator
 import java.io.File
 import java.io.FileNotFoundException
@@ -50,26 +54,23 @@ class FileTransactionDataSourceImpl(private val file: File,private val validatio
     }
 
 
-    override fun updateTransaction(transaction: Transaction) {
-        transactions = getTransactions().toMutableList()
-        val index = transactions.indexOfFirst { it.id == transaction.id }
-
-        val isBlankName = transaction.name.isBlank()
-        val isPositiveAmount = transaction.amount > 0
-
-        when {
-            index < 0 -> println("Update Failed: Item not found")
-            isBlankName -> println("Update Failed: Name can't be empty")
-            !isPositiveAmount -> println("Update Failed: Amount must be positive")
-            else -> {
-                val currentTransaction = transactions[index]
-                val editedAtList = currentTransaction.editDate.toMutableList()
-                editedAtList.add(LocalDate.now().toKotlinLocalDate())
-                transactions[index] = transaction.copy(editDate = editedAtList)
-                saveTransactions(transactions)
-                println("Update Transaction Success ")
-            }
+    override fun updateTransaction(transaction: Transaction): Transaction {
+        val currentTransaction = transactions.find {
+            it.id == transaction.id
         }
+
+        currentTransaction?.let {
+            val editedAtList = currentTransaction.editDate.toMutableList()
+            editedAtList.add(Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date)
+            val index = transactions.indexOfFirst {
+                it.id == currentTransaction.id
+            }
+            val updatedTransaction = transaction.copy(editDate = editedAtList)
+            transactions[index] = updatedTransaction
+            return updatedTransaction
+        }
+
+        throw TransactionNotFoundException()
     }
 
     override fun getTransactions(): List<Transaction> {
