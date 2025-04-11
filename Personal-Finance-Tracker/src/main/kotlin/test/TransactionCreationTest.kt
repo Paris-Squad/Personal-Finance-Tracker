@@ -4,12 +4,12 @@ package org.example.test
 import kotlinx.datetime.LocalDate
 import models.Category
 import models.Transaction
-import org.example.datasource.InMemoryTransactionDataSourceImpl
+import org.example.datasource.FakeTransactionDataSourceImpl
 import org.example.common.check
 
 
 fun main() {
-    val dataSource = InMemoryTransactionDataSourceImpl()
+    val dataSource = FakeTransactionDataSourceImpl()
 
     val validTransaction = Transaction(
         name = "Apartment rent",
@@ -73,3 +73,22 @@ fun main() {
         name = "When user enter amount less than or equal zero return false",
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

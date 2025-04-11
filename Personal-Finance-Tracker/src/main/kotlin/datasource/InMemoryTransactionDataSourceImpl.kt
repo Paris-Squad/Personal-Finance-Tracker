@@ -2,34 +2,28 @@ package org.example.datasource
 
 import datasource.TransactionDataSource
 import models.Transaction
-import org.example.common.Validation
 import kotlinx.datetime.LocalDate
+import org.example.utils.Validator
 
-class FakeTransactionDataSourceImpl:TransactionDataSource {
-    private val transactions = mutableListOf<Transaction>()
+class FakeTransactionDataSourceImpl(private val validation: Validator=Validator):TransactionDataSource {
+    val transactionList = mutableListOf<Transaction>()
 
-
-    override fun createTransaction(transaction: Transaction) : Boolean {
-        val isValidName = Validation.isValidName(transaction.name)
-        val isValidAmount = Validation.isValidAmount(transaction.amount)
-        val isValidTransactionType =  Validation.isValidTransactionType(transaction.isDeposit)
-        val isValidCategory =  Validation.isValidCategory(transaction.category)
-        val isValidCreationDate = Validation.isValidCreationDate(transaction.creationDate)
+    override fun createTransaction(transaction: Transaction):Boolean {
+        val isValidName = validation.isValidName(transaction.name)
+        val isValidAmount = validation.isValidAmount(transaction.amount)
+        val isValidTransactionType =  validation.isValidTransactionType(transaction.isDeposit)
+        val isValidCategory =  validation.isValidCategory(transaction.category)
+        val isValidCreationDate = validation.isValidCreationDate(transaction.creationDate)
 
         return if (isValidName && isValidAmount && isValidTransactionType && isValidCategory && isValidCreationDate  ) {
-            transactions.add(transaction)
+            transactionList.add(transaction)
             true
         } else {
             false
         }
-class FakeTransactionDataSourceImpl:TransactionDataSource {
-    val transactionList = mutableListOf<Transaction>()
-
-    override fun createTransaction(transaction: Transaction) {
-        TODO("Not yet implemented")
     }
 
-    override fun removeTransaction(transaction: Transaction) =
+    override fun removeTransaction(transaction: Transaction) :Boolean=
         transactionList.removeIf { it.id == transaction.id }
 
     override fun updateTransaction(transaction: Transaction) {
@@ -39,7 +33,6 @@ class FakeTransactionDataSourceImpl:TransactionDataSource {
     override fun getTransactions(): List<Transaction> {
         TODO("Not yet implemented")
     }
-
 
     override fun generateReport(startingDate: LocalDate, endingDate: LocalDate): List<Transaction> {
         TODO("Not yet implemented")
