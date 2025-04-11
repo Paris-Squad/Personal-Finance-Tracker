@@ -1,6 +1,6 @@
 package org.example.common
 
-fun <T> check(actual: T, expected: T, name: String) {
+fun <T> check( name: String,actual: T, expected: T) {
     if (actual == expected) {
         println("✓ - $name")
     } else {

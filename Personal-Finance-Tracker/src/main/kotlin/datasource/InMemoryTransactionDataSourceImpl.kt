@@ -2,10 +2,10 @@ package org.example.datasource
 
 import datasource.TransactionDataSource
 import models.Transaction
-import kotlinx.datetime.LocalDate
 import org.example.common.Validation
+import kotlinx.datetime.LocalDate
 
-class InMemoryTransactionDataSourceImpl:TransactionDataSource {
+class FakeTransactionDataSourceImpl:TransactionDataSource {
     private val transactions = mutableListOf<Transaction>()
 
 
@@ -22,11 +22,15 @@ class InMemoryTransactionDataSourceImpl:TransactionDataSource {
         } else {
             false
         }
-    }
+class FakeTransactionDataSourceImpl:TransactionDataSource {
+    val transactionList = mutableListOf<Transaction>()
 
-    override fun removeTransaction(transaction: Transaction) {
+    override fun createTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
     }
+
+    override fun removeTransaction(transaction: Transaction) =
+        transactionList.removeIf { it.id == transaction.id }
 
     override fun updateTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
