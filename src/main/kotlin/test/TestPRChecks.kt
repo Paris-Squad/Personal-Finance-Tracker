@@ -1,10 +1,12 @@
 package org.example.test
 
 import datasource.TransactionDataSource
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import models.Category
 import models.Transaction
-import org.example.datasource.InMemoryTransactionDataSourceImpl
-import java.time.LocalDateTime
+import org.example.datasource.FakeTransactionDataSourceImpl
 import java.util.*
 
 
@@ -13,12 +15,12 @@ val transaction = Transaction(
     isDeposit = false,
     amount = 200.4,
     category = Category.FOOD,
-    creationTime = LocalDateTime.now(),
-    editTime = emptyList()
+    creationDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
+    editDate = emptyList()
 )
 
 fun main() {
-    val dataSource: TransactionDataSource = InMemoryTransactionDataSourceImpl()
+    val dataSource: TransactionDataSource = FakeTransactionDataSourceImpl()
 
     assertEquals(Unit, dataSource.createTransaction(transaction), "Adding new Transaction")
     assertEquals(Unit, dataSource.removeTransaction(transaction), "Removing current Transaction")
