@@ -5,16 +5,28 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import models.Transaction
+import org.example.utils.Validator
 import org.example.exceptions.TransactionNotFoundException
 
-class FakeTransactionDataSourceImpl:TransactionDataSource {
+class FakeTransactionDataSourceImpl(private val validation: Validator = Validator) : TransactionDataSource {
     private val transactionList = mutableListOf<Transaction>()
 
-    override fun createTransaction(transaction: Transaction) {
-        TODO("Not yet implemented")
+    override fun createTransaction(transaction: Transaction): Boolean {
+        val isValidName = validation.isValidName(transaction.name)
+        val isValidAmount = validation.isValidAmount(transaction.amount)
+        val isValidTransactionType = validation.isValidTransactionType(transaction.isDeposit)
+        val isValidCategory = validation.isValidCategory(transaction.category)
+        val isValidCreationDate = validation.isValidCreationDate(transaction.creationDate)
+
+        return if (isValidName && isValidAmount && isValidTransactionType && isValidCategory && isValidCreationDate) {
+            transactionList.add(transaction)
+            true
+        } else {
+            false
+        }
     }
 
-    override fun removeTransaction(transaction: Transaction) =
+    override fun removeTransaction(transaction: Transaction): Boolean =
         transactionList.removeIf { it.id == transaction.id }
 
     @Throws(TransactionNotFoundException::class)
