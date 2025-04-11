@@ -5,7 +5,7 @@ import models.Transaction
 import kotlinx.datetime.LocalDate
 
 class FakeTransactionDataSourceImpl:TransactionDataSource {
-    val transactionList = mutableListOf<Transaction>()
+    private val transactionList = mutableListOf<Transaction>()
 
     override fun createTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
