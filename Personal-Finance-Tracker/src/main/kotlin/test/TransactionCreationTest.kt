@@ -1,12 +1,10 @@
 package org.example.test
 
-
 import kotlinx.datetime.LocalDate
 import models.Category
 import models.Transaction
 import org.example.datasource.FakeTransactionDataSourceImpl
 import org.example.common.check
-
 
 fun main() {
     val dataSource = FakeTransactionDataSourceImpl()

@@ -10,7 +10,7 @@ import models.Transaction
 import java.util.UUID
 
 class FinanceReportMock : TransactionDataSource {
-    override fun createTransaction(transaction: Transaction) {
+    override fun createTransaction(transaction: Transaction): Boolean {
         TODO("Not yet implemented")
     }
 

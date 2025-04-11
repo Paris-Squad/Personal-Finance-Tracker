@@ -80,12 +80,6 @@ class FileTransactionDataSourceImpl(private val file: File,private val validatio
         }
     }
 
-    override fun generateReport(
-        startingDate: kotlinx.datetime.LocalDate,
-        endingDate: kotlinx.datetime.LocalDate
-    ): List<Transaction> {
-        TODO("Not yet implemented")
-    }
 
     override fun removeTransaction(transaction: Transaction): Boolean {
         transactions = getTransactions().toMutableList()
