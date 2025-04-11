@@ -3,9 +3,7 @@ package models
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import java.util.UUID
-
 import org.example.utils.UUIDSerializer
-import java.util.*
 
 @Serializable
 data class Transaction(

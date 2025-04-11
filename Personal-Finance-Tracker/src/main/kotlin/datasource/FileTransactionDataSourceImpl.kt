@@ -3,7 +3,6 @@ package org.example.datasource
 import datasource.TransactionDataSource
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toKotlinLocalDate
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -12,11 +11,10 @@ import org.example.exceptions.TransactionNotFoundException
 import org.example.utils.Validator
 import java.io.File
 import java.io.FileNotFoundException
-import java.time.LocalDate
 
 
-
-class FileTransactionDataSourceImpl(private val file: File,private val validation: Validator=Validator) : TransactionDataSource {
+class FileTransactionDataSourceImpl(private val file: File, private val validation: Validator = Validator) :
+    TransactionDataSource {
     private var transactions = mutableListOf<Transaction>()
     private val json = Json { prettyPrint = true }
 
@@ -28,18 +26,18 @@ class FileTransactionDataSourceImpl(private val file: File,private val validatio
                     transactions = json.decodeFromString(outPutText)
                 }
             }
-        }else{
+        } else {
             throw FileNotFoundException("The path you provided it's a directory not file")
         }
     }
 
-    override fun createTransaction(transaction: Transaction) :Boolean{
+    override fun createTransaction(transaction: Transaction): Boolean {
         val isValid = validation.isValidName(transaction.name) &&
                 validation.isValidAmount(transaction.amount) &&
                 validation.isValidTransactionType(transaction.isDeposit) &&
                 validation.isValidCategory(transaction.category)
 
-        return if(isValid) {
+        return if (isValid) {
             transactions = getTransactions().toMutableList()
             transactions.add(transaction)
             saveTransactions(transactions)
@@ -89,4 +87,4 @@ class FileTransactionDataSourceImpl(private val file: File,private val validatio
         return removed
     }
 
-   }
+}
