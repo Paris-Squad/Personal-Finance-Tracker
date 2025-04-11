@@ -19,15 +19,13 @@ class InMemoryTransactionDataSourceImpl : TransactionDataSource {
     }
 
     override fun getAllTransaction(): List<Transaction> {
-        if (transactions.isEmpty())
-            return emptyList<Transaction>()
-        else
+        if (transactions.isEmpty()) {
+            println("No Transactions yet!")
+            return emptyList()
+        } else
             return transactions
-        /*else if (transactions is MutableList<Transaction>)
-            return transactions
-        else if (transactions is MutableList<Any>)
-            return emptyList<Transaction>()*/
     }
+
     override fun getTransactionByDate(date: LocalDateTime): List<Transaction> {
         TODO("Not yet implemented")
     }
