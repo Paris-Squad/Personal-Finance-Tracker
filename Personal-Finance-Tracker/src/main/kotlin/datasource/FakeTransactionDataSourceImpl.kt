@@ -2,10 +2,9 @@ package org.example.datasource
 
 import datasource.TransactionDataSource
 import models.Transaction
-import kotlinx.datetime.LocalDate
 
 class FakeTransactionDataSourceImpl:TransactionDataSource {
-    val transactionList = mutableListOf<Transaction>()
+    private val transactionList = mutableListOf<Transaction>()
 
     override fun createTransaction(transaction: Transaction) {
         TODO("Not yet implemented")
@@ -22,7 +21,4 @@ class FakeTransactionDataSourceImpl:TransactionDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun generateReport(startingDate: LocalDate, endingDate: LocalDate): List<Transaction> {
-        TODO("Not yet implemented")
-    }
 }
