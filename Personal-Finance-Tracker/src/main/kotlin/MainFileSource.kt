@@ -40,17 +40,17 @@ fun main() {
     )
 
     println("\n\n All Transactions after create new two transactions\n")
-    fileDataSource.getAllTransaction().forEach { println(it) }
+    fileDataSource.getTransactions().forEach { println(it) }
 
-    val firstTransaction = fileDataSource.getAllTransaction().first()
+    val firstTransaction = fileDataSource.getTransactions().first()
     fileDataSource.updateTransaction(
         firstTransaction.copy(amount = 50.0)
     )
 
     println("\n\n All Transactions after last update ")
-    fileDataSource.getAllTransaction().forEach { println(it) }
+    fileDataSource.getTransactions().forEach { println(it) }
 
     fileDataSource.removeTransaction(firstTransaction)
     println("\n\n All Transactions after removing one Transaction ")
-    fileDataSource.getAllTransaction().forEach { println(it) }
+    fileDataSource.getTransactions().forEach { println(it) }
 }
