@@ -38,7 +38,7 @@ class FileTransactionDataSourceImpl(private val file: File, private val validati
                 validation.isValidCategory(transaction.category)
 
         return if (isValid) {
-            transactions = getAllTransaction().toMutableList()
+            transactions = getTransactions().toMutableList()
             transactions.add(transaction)
             saveTransactions(transactions)
             true
