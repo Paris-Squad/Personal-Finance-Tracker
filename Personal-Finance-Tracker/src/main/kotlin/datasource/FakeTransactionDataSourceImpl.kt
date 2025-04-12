@@ -50,6 +50,10 @@ class FakeTransactionDataSourceImpl(private val validation: Validator = Validato
     }
 
     override fun getTransactions(): List<Transaction> {
-        TODO("Not yet implemented")
+        if (transactionList.isEmpty()) {
+            println("No Transactions yet!")
+            return emptyList()
+        } else
+            return transactionList
     }
 }
