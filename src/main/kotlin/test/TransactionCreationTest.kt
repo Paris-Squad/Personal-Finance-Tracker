@@ -4,7 +4,7 @@ import kotlinx.datetime.LocalDate
 import models.Category
 import models.Transaction
 import org.example.datasource.FakeTransactionDataSourceImpl
-import org.example.common.check
+import comman.check
 
 fun main() {
     val dataSource = FakeTransactionDataSourceImpl()

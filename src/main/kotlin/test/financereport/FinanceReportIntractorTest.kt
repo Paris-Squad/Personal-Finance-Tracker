@@ -5,7 +5,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import models.Category
-import org.example.common.check
+import comman.check
 import org.example.interactor.GetFinanceReportInteractor
 import org.example.models.FinanceReport
 
