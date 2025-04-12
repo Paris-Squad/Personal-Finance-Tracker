@@ -1,7 +1,7 @@
 package org.example.test
 
 import models.Transaction
-import org.example.datasource.InMemoryTransactionDataSourceImpl
+import org.example.datasource.FakeTransactionDataSourceImpl
 
 fun checkTransaction(name: String, actual: List<Transaction>, expected: List<Transaction>) {
     if (actual == expected)
@@ -13,7 +13,7 @@ fun checkTransaction(name: String, actual: List<Transaction>, expected: List<Tra
 fun checkGetTransactionTestCases() {
     checkTransaction(
         name = "When the list returned is empty, return true",
-        actual = InMemoryTransactionDataSourceImpl().getAllTransaction(),
+        actual = FakeTransactionDataSourceImpl().getTransactions(),
         expected = emptyList()
     )
 }
