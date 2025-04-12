@@ -41,7 +41,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 3500.00,
             category = Category.SALARY,
             creationDate = currentDate,
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
         Transaction(
             id = UUID.randomUUID(),
@@ -50,7 +50,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 850.00,
             category = Category.SALARY,
             creationDate = LocalDate(currentDate.year, currentDate.month, 15),
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
 
         Transaction(
@@ -60,7 +60,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 1200.00,
             category = Category.RENT,
             creationDate = LocalDate(currentDate.year, currentDate.month, 1),
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
         Transaction(
             id = UUID.randomUUID(),
@@ -69,7 +69,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 187.45,
             category = Category.FOOD,
             creationDate = currentDate,
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
         Transaction(
             id = UUID.randomUUID(),
@@ -78,7 +78,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 78.50,
             category = Category.FOOD,
             creationDate = LocalDate(currentDate.year, currentDate.month, currentDate.dayOfMonth - 2),
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
         Transaction(
             id = UUID.randomUUID(),
@@ -87,7 +87,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 32.00,
             category = Category.ENTERTAINMENT,
             creationDate = LocalDate(currentDate.year, currentDate.month, 18),
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
         Transaction(
             id = UUID.randomUUID(),
@@ -96,7 +96,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 45.75,
             category = Category.TRANSPORT,
             creationDate = LocalDate(currentDate.year, currentDate.month, 20),
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
 
         Transaction(
@@ -106,7 +106,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 3500.00,
             category = Category.SALARY,
             creationDate = LocalDate(currentDate.year - 1, currentDate.month, 20),
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
         Transaction(
             id = UUID.randomUUID(),
@@ -115,7 +115,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 1200.00,
             category = Category.RENT,
             creationDate = LocalDate(currentDate.year - 1, currentDate.month, 20),
-            editDate = emptyList()
+            modificationDates = emptyList()
         ),
         Transaction(
             id = UUID.randomUUID(),
@@ -124,7 +124,7 @@ private fun createMockTransactions(): MutableList<Transaction> {
             amount = 65.30,
             category = Category.TRANSPORT,
             creationDate = LocalDate(currentDate.year - 1, currentDate.month, 20),
-            editDate = emptyList()
+            modificationDates = emptyList()
         )
     )
 }

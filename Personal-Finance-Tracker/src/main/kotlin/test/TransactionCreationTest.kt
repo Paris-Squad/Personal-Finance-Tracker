@@ -4,10 +4,12 @@ import kotlinx.datetime.LocalDate
 import models.Category
 import models.Transaction
 import org.example.datasource.FakeTransactionDataSourceImpl
-import org.example.common.check
+import org.example.interactor.CreateTransactionInteractor
+import org.example.utils.check
 
 fun main() {
     val dataSource = FakeTransactionDataSourceImpl()
+    val createTransactionInteractor = CreateTransactionInteractor(dataSource)
 
     val validTransaction = Transaction(
         name = "Apartment rent",
@@ -15,7 +17,7 @@ fun main() {
         isDeposit = false,
         category = Category.RENT,
         creationDate = LocalDate(2025, 4, 9),
-        editDate = emptyList()
+        modificationDates = emptyList()
     )
 
     val valEmptyNameTransaction = Transaction(
@@ -24,7 +26,7 @@ fun main() {
         amount = 30000.0,
         category = Category.SALARY,
         creationDate = LocalDate(2025, 4, 1),
-        editDate = emptyList()
+        modificationDates = emptyList()
     )
 
 
@@ -34,7 +36,7 @@ fun main() {
         amount = 150.0,
         category = Category.FOOD,
         creationDate = LocalDate(2025, 4, 9),
-        editDate = emptyList()
+        modificationDates = emptyList()
     )
 
     val invalidAmountTransaction = Transaction(
@@ -43,50 +45,31 @@ fun main() {
         amount = -0.0,
         category = Category.SALARY,
         creationDate = LocalDate(2025, 4, 9),
-        editDate = emptyList()
+        modificationDates = emptyList()
     )
 
 
     check(
-        actual = dataSource.createTransaction(validTransaction),
-        expected = true ,
+        actual = createTransactionInteractor(validTransaction),
+        expected = true,
         name = "When user enter valid data return true",
     )
 
     check(
-        actual = dataSource.createTransaction(valEmptyNameTransaction),
-        expected = false ,
+        actual = createTransactionInteractor(valEmptyNameTransaction),
+        expected = false,
         name = "When user enter Empty name return false"
     )
 
     check(
-        actual = dataSource.createTransaction(invalidNameTransaction),
-        expected = false ,
+        actual = createTransactionInteractor(invalidNameTransaction),
+        expected = false,
         name = "When user enter special character/number into name return false",
     )
 
     check(
-        actual = dataSource.createTransaction(invalidAmountTransaction),
-        expected = false ,
+        actual = createTransactionInteractor(invalidAmountTransaction),
+        expected = false,
         name = "When user enter amount less than or equal zero return false",
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

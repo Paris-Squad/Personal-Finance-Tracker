@@ -14,5 +14,5 @@ data class Transaction(
     val amount: Double,
     val category: Category,
     val creationDate : LocalDate,
-    val editDate: List<LocalDate>
+    val modificationDates: List<LocalDate>
 )

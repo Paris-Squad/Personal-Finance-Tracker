@@ -8,13 +8,7 @@ import java.io.File
 
 fun main() {
 
-    val jsonFile = File("transaction.json")
-    if (!jsonFile.exists()) {
-        jsonFile.parentFile?.mkdirs()
-        jsonFile.createNewFile()
-        jsonFile.writeText("[]")
-    }
-
+    val jsonFile = File("testdir")
     val fileDataSource = FileTransactionDataSourceImpl(jsonFile)
 
     fileDataSource.createTransaction(
@@ -24,7 +18,7 @@ fun main() {
             amount = 45.67,
             category = Category.FOOD,
             creationDate = LocalDate(2025, 4, 9),
-            editDate = emptyList()
+            modificationDates = emptyList()
         )
     )
 
@@ -35,7 +29,7 @@ fun main() {
             amount = 3000.0,
             category = Category.SALARY,
             creationDate = LocalDate(2025, 4, 9),
-            editDate = emptyList()
+            modificationDates = emptyList()
         )
     )
 

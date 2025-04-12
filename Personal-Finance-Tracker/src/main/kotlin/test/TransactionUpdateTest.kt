@@ -22,7 +22,7 @@ fun main() {
         amount = 150.0,
         category = Category.RENT,
         creationDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
-        editDate = emptyList()
+        modificationDates = emptyList()
     )
 
     val validDepositTransaction = Transaction(
@@ -31,7 +31,7 @@ fun main() {
         amount = 150.0,
         category = Category.RENT,
         creationDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
-        editDate = emptyList()
+        modificationDates = emptyList()
     )
     val updateDepositTransaction = validDepositTransaction.copy(name = "Deposit Transaction Updated", amount = 200.0)
     // endregion
@@ -43,7 +43,7 @@ fun main() {
         amount = 150.0,
         category = Category.FOOD,
         creationDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date,
-        editDate = emptyList()
+        modificationDates = emptyList()
     )
 
     val emptyNameTransaction = validDepositTransaction.copy(name = "   ")
