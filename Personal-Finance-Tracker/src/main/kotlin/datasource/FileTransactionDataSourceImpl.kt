@@ -50,6 +50,7 @@ class FileTransactionDataSourceImpl(
                 modificationDates = currentTransaction.addModificationDate()
             )
             transactions[index] = updatedTransaction
+            saveTransactions(transactions)
             return updatedTransaction
         }
         throw TransactionNotFoundException()
