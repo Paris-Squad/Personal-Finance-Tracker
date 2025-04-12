@@ -5,7 +5,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import models.Category
 import models.Transaction
-import org.example.common.check
+import comman.check
 import org.example.datasource.FakeTransactionDataSourceImpl
 
 fun main() {
