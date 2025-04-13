@@ -1,4 +1,4 @@
-package org.example.common
+package org.example.utils
 
 fun <T> check( name: String,actual: T, expected: T) {
     if (actual == expected) {

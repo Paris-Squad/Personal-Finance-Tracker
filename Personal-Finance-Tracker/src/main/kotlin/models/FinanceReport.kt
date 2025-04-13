@@ -16,7 +16,7 @@ data class FinanceReport(
     val expenseBreakdownPercentage: Map<Category, Double> = emptyMap(),
 ) {
 
-    override fun toString(): String {
+     fun generateReport(): String {
         val dateRange = "$startDate to $endDate"
         val sb = StringBuilder()
 

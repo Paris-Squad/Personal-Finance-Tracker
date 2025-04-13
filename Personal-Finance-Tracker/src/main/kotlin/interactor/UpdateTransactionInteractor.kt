@@ -21,12 +21,12 @@ class UpdateTransactionInteractor(
     }
 
     private fun isValidTransaction(transaction: Transaction): Boolean {
-        val isBlankName = transaction.name.isBlank()
+        val isNotBlankName = transaction.name.isNotBlank()
         val isPositiveAmount = transaction.amount > 0
         val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
         val isFutureDate = transaction.creationDate > today
 
-        return !isBlankName && isPositiveAmount && !isFutureDate
+        return isNotBlankName && isPositiveAmount && !isFutureDate
     }
 
 }
